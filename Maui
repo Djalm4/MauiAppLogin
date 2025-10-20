@@ -1,0 +1,15 @@
+AppLogin\Protegida.xaml.cs
+private async void Button_Clicked(object sender, EventArgs e)
+{
+    bool confirmacao = await DisplayAlert("Tem Certeza", "Sair do App", "Sim", "Não");
+
+    if (confirmacao)
+    {
+        SecureStorage.Default.Remove("usuario_logado");
+        var window = Application.Current?.Windows.FirstOrDefault();
+        if (window != null)
+        {
+            window.Page = new Login();
+        }
+    }
+}
